@@ -61,39 +61,33 @@ public class PracticeFormSteps {
 
     @Entonces("debe aparecer el modal de confirmación")
     public void debeAparecerElModalDeConfirmacion() {
-        assertTrue(practiceFormPage.isModalDisplayed(),
-                "El modal de confirmación no se mostró");
+        assertTrue(practiceFormPage.isModalDisplayed(),"El modal de confirmación no se mostró");
     }
 
     @Y("el título del modal debe ser {string}")
     public void elTituloDelModalDebeSer(String tituloEsperado) {
         String tituloActual = practiceFormPage.getModalTitle();
-        assertEquals(tituloEsperado, tituloActual,
-                "El título del modal no coincide con el esperado");
+        assertEquals(tituloEsperado, tituloActual,"El título del modal no coincide con el esperado");
     }
 
     @Y("el modal debe mostrar el nombre completo {string}")
     public void elModalDebeMostrarElNombreCompleto(String nombreCompleto) {
         String contenidoModal = practiceFormPage.getModalBodyText();
-        assertTrue(contenidoModal.contains(nombreCompleto),
-                "El modal no contiene el nombre completo esperado: " + nombreCompleto);
+        assertTrue(contenidoModal.contains(nombreCompleto),"El modal no contiene el nombre completo esperado: " + nombreCompleto);
     }
 
     @Entonces("los campos obligatorios deben mostrar validación de error")
     public void losCamposObligatoriosDebenMostrarValidacionDeError() {
-        assertFalse(practiceFormPage.isModalDisplayed(),
-                "El modal no debería aparecer con formulario incompleto");
+        assertFalse(practiceFormPage.isModalDisplayed(),"El modal no debería aparecer con formulario incompleto");
     }
 
     @Y("el campo {string} debe tener borde rojo")
     public void elCampoDebeTenerBordeRojo(String fieldId) {
-        assertTrue(practiceFormPage.hasErrorBorder(fieldId),
-                "El campo " + fieldId + " no muestra borde de error");
+        assertTrue(practiceFormPage.hasErrorBorder(fieldId),"El campo " + fieldId + " no muestra borde de error");
     }
 
     @Y("el campo de género debe indicar error")
     public void elCampoDeGeneroDebeIndicarError() {
-        assertFalse(practiceFormPage.isModalDisplayed(),
-                "El campo de género debería indicar que es obligatorio");
+        assertFalse(practiceFormPage.isModalDisplayed(),"El campo de género debería indicar que es obligatorio");
     }
 }
