@@ -9,7 +9,7 @@ Feature: Formulario de Practica DemoQA
     And ingresa el apellido "Perez"
     And ingresa el email "juan.perez@test.com"
     And selecciona el género "Male"
-    And ingresa el número móvil "987654321"
+    And ingresa el número móvil "9876543210"
     And hace clic en el botón Submit
     Then debe aparecer el modal de confirmación
     And el título del modal debe ser "Thanks for submitting the form"
