@@ -1,6 +1,6 @@
 package sahe.com.pages;
 
-import net.thucydides.core.pages.PageObject;
+import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
 
 public class PracticeFormPage extends PageObject {
@@ -50,4 +50,66 @@ public class PracticeFormPage extends PageObject {
         $(currentAddressTextarea).type(address);
     }
 
+    public void selectGender(String gender) {
+        By genderLabel;
+
+        switch (gender) {
+            case "Male":
+                genderLabel = maleGenderLabel;
+                break;
+            case "Female":
+                genderLabel = femaleGenderLabel;
+                break;
+            case "Other":
+                genderLabel = otherGenderLabel;
+                break;
+            default:
+                throw new IllegalArgumentException("Género no válido: " + gender);
+        }
+        evaluateJavascript("arguments[0].click();", $(genderLabel));
+    }
+
+    public void selectHobby(String hobby) {
+        By hobbyLabel;
+
+        switch (hobby) {
+            case "Sports":
+                hobbyLabel = sportsHobbyLabel;
+                break;
+            case "Reading":
+                hobbyLabel = readingHobbyLabel;
+                break;
+            case "Music":
+                hobbyLabel = musicHobbyLabel;
+                break;
+            default:
+                throw new IllegalArgumentException("Hobby no válido: " + hobby);
+        }
+        evaluateJavascript("arguments[0].click();", $(hobbyLabel));
+    }
+
+    public void clickSubmit() {
+        evaluateJavascript("arguments[0].scrollIntoView(true);", $(submitButton));
+        waitABit(500);
+        evaluateJavascript("arguments[0].click();", $(submitButton));
+    }
+
+    public boolean isModalDisplayed() {
+        return $(modalTitle).isVisible();
+    }
+
+    public String getModalTitle() {
+        return $(modalTitle).getText();
+    }
+
+    public String getModalBodyText() {
+        return $(modalBody).getText();
+    }
+
+    public boolean hasErrorBorder(String fieldId) {
+        String borderColor = $(By.id(fieldId)).getCssValue("border-color");
+        return borderColor.contains("rgb(220, 53, 69)") ||
+                borderColor.contains("rgb(255, 0, 0)") ||
+                borderColor.contains("red");
+    }
 }
